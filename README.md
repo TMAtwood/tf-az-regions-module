@@ -2,7 +2,7 @@
 
 [![Maintained by T.M.Atwood and Company](https://img.shields.io/badge/maintained%20by-westkeys.com-%235849a6.svg)](https://tmatwood.com/?ref=repo_tf-az-regions)
 
-This module allows lookups of the short code by Azure region.  This module is also used to specify the default accepted and operating regions.
+This module allows lookups of the short code by Azure region.
 
 ## Azure Regions
 
