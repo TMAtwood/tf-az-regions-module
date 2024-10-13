@@ -1,0 +1,24 @@
+{
+  "configurations": [
+    {
+      "MIMode": "gdb",
+      "args": [],
+      "cwd": "c:/Users/ThomasMAtwood/repos/tmatwood/terraform-az-regions",
+      "externalConsole": true,
+      "miDebuggerPath": "gdb",
+      "name": "C/C++ Runner: Debug Session",
+      "program": "c:/Users/ThomasMAtwood/repos/tmatwood/terraform-az-regions/build/Debug/outDebug",
+      "request": "launch",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "ignoreFailures": true,
+          "text": "-enable-pretty-printing"
+        }
+      ],
+      "stopAtEntry": false,
+      "type": "cppdbg"
+    }
+  ],
+  "version": "0.2.0"
+}

@@ -1,0 +1,78 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0  # Use the ref you want to point at
+    hooks:
+      - id: check-added-large-files
+        args: ["--maxkb=100"]
+      - id: check-case-conflict
+      - id: check-executables-have-shebangs
+      - id: check-illegal-windows-names
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-shebang-scripts-are-executable
+      - id: check-symlinks
+      - id: check-toml
+      - id: check-xml
+      - id: check-yaml
+      - id: debug-statements
+      - id: destroyed-symlinks
+      - id: detect-private-key
+      - id: double-quote-string-fixer
+      - id: end-of-file-fixer
+      - id: file-contents-sorter
+      - id: fix-byte-order-marker
+      - id: fix-encoding-pragma
+      - id: fix-encoding-pragma
+      - id: forbid-new-submodules
+      - id: forbid-submodules
+      - id: mixed-line-ending
+        args: ["--fix=lf"]
+      - id: name-tests-test
+      - id: no-commit-to-branch
+        args: [--branch, develop,--branch,master,--branch,main]
+      - id: pretty-format-json
+        args: ["--autofix"]
+      - id: requirements-txt-fixer
+      - id: sort-simple-yaml
+      - id: trailing-whitespace
+  - repo: https://github.com/gruntwork-io/pre-commit
+    rev: v0.1.23
+    hooks:
+      - id: gofmt
+      - id: golint
+      - id: shellcheck
+  - repo: https://github.com/antonbabenko/pre-commit-terraform
+    rev: v1.96.1
+    hooks:
+    - id: infracost_breakdown
+      args:
+      - --args=--path=./env/dev
+      verbose: true # Always show costs
+    - id: terraform_checkov
+      args:
+      - --args=--quiet
+      - --hook-config='.totalHourlyCost|tonumber > 0.1'
+      - --hook-config='.totalHourlyCost|tonumber > 1'
+      - --hook-config='.projects[].diff.totalMonthlyCost|tonumber != 10000'
+      - --hook-config='.currency == "USD"'
+    - id: terraform_docs
+    - id: terraform_fmt
+      args:
+      - --hook-config=--parallelism-ci-cpu-cores=N
+    - id: terraform_tflint
+      args:
+      - --hook-config=--parallelism-ci-cpu-cores=4
+    - id: terraform_trivy
+    - id: terraform_validate
+      args:
+      - --hook-config=--parallelism-ci-cpu-cores=4
+    - id: terrascan
+      args:
+      - --args=--non-recursive # avoids scan errors on subdirectories without Terraform config files
+      - --args=--policy-type=azure
+    # - id: tfupdate
+    #   name: Autoupdate Terraform versions
+    # - id: tfupdate
+    #   name: Autoupdate Azure provider versions
+    #   args:
+    #   - --args=provider azurerm # Will be pinned to latest version

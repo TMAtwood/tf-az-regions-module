@@ -1,0 +1,99 @@
+trigger:
+  - master
+
+resources:
+- repo: self
+
+variables:
+  cacheHitVar: false
+  GitVersion.SemVer: ''
+  GitVersion.ShortSha: ''
+  LinuxBrewCacheFolder: '$(Pipeline.Workspace)/.linuxbrew/packages'
+  tag: '$(GitVersion.SemVer)-$(GitVersion.ShortSha)'
+
+  # Agent VM image name
+  vmImageName: 'ubuntu-18.04'
+
+stages:
+- stage: Build
+  displayName: Build and push stage
+  jobs:
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+    - task: GitVersion@5
+      displayName: gitversion
+      inputs:
+        runtime: 'core'
+        updateAssemblyInfo: true
+        versionSpec: '5.x'
+    - task: PowerShell@2
+      displayName: Set the name of the build (i.e. the Build.BuildNumber)
+      inputs:
+        targetType: 'inline'
+        script: |
+          [string] $buildName = "$(tag)"
+          Write-Host "Setting the name of the build to '$buildName'."
+          Write-Host "##vso[build.updatebuildnumber]$buildName"
+    - task: TerraformInstaller@0
+      displayName: Install latest Terraform
+      inputs:
+        terraformVersion: 'latest'
+    - task: Bash@3
+      displayName: Install dependency-check, terraform-docs, tflint, and tfsec
+      inputs:
+        targetType: 'inline'
+        script: |
+          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+          brew install dependency-check
+          brew install terraform-docs
+          brew install tflint
+          brew install tfsec
+    - task: Bash@3
+      displayName: Run OWASP dependency check
+      inputs:
+        targetType: 'inline'
+        script: |
+          dependency-check --failOnCVSS 5 --project DocScan --scan $(Build.SourcesDirectory)/** --out $(Build.SourcesDirectory)
+    # - task: Cache@2
+    #   displayName: Cache Linuxbrew packages
+    #   inputs:
+    #     cacheHitVar: $(cacheHitVar)
+    #     key: 'linuxbrew | "$(Agent.OS)" | /home/linuxbrew/.linuxbrew/**'
+    #     path: $(LinuxBrewCacheFolder)
+    #     restoreKeys: |
+    #       dependency-check | "$(Agent.OS)"
+    #       dependency-check
+    #       terraform-docs | "$(Agent.OS)"
+    #       terrafrom-docs
+    #       tflint | "$(Agent.OS)"
+    #       tflint
+    #       tfsec | "$(Agent.OS)"
+    #       tfsec
+    - task: Bash@3
+      displayName: Install pre-commit and confirm items pass
+      inputs:
+        targetType: 'inline'
+        script: |
+          pip3 install pre-commit
+          pre-commit run -a
+        failOnStderr: true
+        noProfile: false
+    - task: TerraformCLI@0
+      displayName: terraform init
+      inputs:
+        command: 'init'
+        allowTelemetryCollection: true
+    - task: TerraformCLI@0
+      displayName: terraform validate
+      inputs:
+        command: 'validate'
+        allowTelemetryCollection: true
+    - task: PublishBuildArtifacts@1
+      displayName: Publish OWASP dependency report to artifacts
+      inputs:
+        PathtoPublish: '$(Build.SourcesDirectory)/dependency-check-report.html'
+        ArtifactName: 'dependency-check-report.html'
+        publishLocation: 'Container'
