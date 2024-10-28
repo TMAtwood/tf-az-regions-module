@@ -8,73 +8,64 @@ This module allows lookups of the short code by Azure region.
 
 These are the Azure regions and their codes.
 
-| Geographical Location | Long Region | Region Description | Region Description 2 | Short Code |
-|-|-|-|-|-|
-| Asia Pacific | asia | Asia | Asia | as |
-| Asia Pacific | asiapacific | Asia Pacific | Asia Pacific | ap |
-| Asia Pacific | australia | Australia | Australia | au |
-| Asia Pacific | australiacentral | Australia Central | (Asia Pacific) Australia Central | auc |
-| Asia Pacific | australiacentral2 | Australia Central 2 | (Asia Pacific) Australia Central 2 | auc2 |
-| Asia Pacific | australiaeast | Australia East | (Asia Pacific) Australia East | aue |
-| Asia Pacific | australiasoutheast | Australia Southeast | Australia Southeast | ause |
-| Americas | brazil | Brazil | Brazil | br |
-| Americas | brazilsouth | Brazil South | (South America) Brazil South | brs |
-| Americas | brazilsoutheast | Brazil Southeast | (South America) Brazil Southeast | brse|
-| Americas | canada | Canada | Canada | ca |
-| Americas | canadacentral | Canada Central | (Canada) Canada Central | cac |
-| Americas | canadaeast | Canada East | (Canada) Canada East | cae |
-| Asia Pacific | centralindia | Central India | (Asia Pacific) Central India | inc |
-| Americas | centralus | Central US | (US) Central US | usc |
-| Americas | centraluseuap | Central US EUAP | (US) Central US EUAP | usceeuap |
-| Americas | centralusstage | Central US (Stage) | (US) Central US (Stage) | uscstg |
-| Asia Pacific | eastasia | East Asia | (Asia Pacific) East Asia | ase |
-| Asia Pacific | eastasiastage | East Asia (Stage) | (Asia Pacific) East Asia (Stage) | asestg |
-| Americas | eastus | East US | (US) East US | use |
-| Americas | eastus2 | East US 2 | (US) East US 2 | use2 |
-| Americas | eastus2euap | East US 2 EUAP | (US) East US 2 EUAP | use2euap |
-| Americas | eastus2stage | East US 2 (Stage) | (US) East US 2 (Stage) | use2stg |
-| Americas | eastusstage | East US (Stage) | (US) East US (Stage) | usestg |
-| Europe | europe | Europe | Europe | eu |
-| Europe | francecentral | France Central | (Europe) France Central | frc |
-| Europe | francesouth | France South | (Europe) France South | frs |
-| Europe | germanynorth | Germany North | (Europe) Germany North | den |
-| Europe | germanynortheast | Germany Northeast | (Europe) Germany Northeast | dene |
-| Europe | germanywestcentral | Germany West Central | (Europe) Germany West Central | dewc |
-| Global | global | Global | Global | gl |
-| Asia Pacific | india | India | India | in |
-| Asia Pacific | japan | Japan | Japan | jp |
-| Asia Pacific | japaneast | Japan East | (Asia Pacific) Japan East | jpe |
-| Asia Pacific | japanwest | Japan West | (Asia Pacific) Japan West | jpw |
-| Asia Pacific | koreacentral | Korea Central | (Asia Pacific) Korea Central | krc |
-| Asia Pacific | koreasouth | Korea South | (Asia Pacific) Korea South | krs |
-| Americas | northcentralstage | North Central US (Stage) | (US) North Central US (Stage) | usncstg |
-| Americas | northcentralus | North Central US | (US) North Central US | usnc |
-| Europe | northeurope | North Europe | (Europe) North Europe | eun |
-| Europe | norwayeast | Norway East | (Europe) Norway East | noe |
-| Europe | norwaywest | Norway West | (Europe) Norway West | now |
-| Africa | southafricannorth | South Africa North | (Africa) South Africa North | zan |
-| Africa | southafricawest | South Africa West | (Africa) South Africa West | zaw |
-| Americas | southcentralus | South Central US | (US) South Central US | ussc |
-| Americas | southcentralusstage | South Central US (Stage) | (US) South Central US (Stage) | usscstg |
-| Asia Pacific | southeastasia | Southeast Asia | (Asia Pacific) Southeast Asia | AP |
-| Asia Pacific | southeastasiastage | Southeast Asia (Stage) | (Asia Pacific) Southeast Asia (Stage) | assestg |
-| Asia Pacific | southindia | South India | (Asia Pacific) South India | ins |
-| Europe | switzerlandnorth | Switzerland North | (Europe) Switzerland North | chn |
-| Europe | switzerlandwest | Switzerland West | (Europe) Switzerland West | chw |
-| Middle East | uaecentral | UAE Central | (Middle East) UAE Central | aec |
-| Middle East | uaenorth | UAE North | (Middle East) UAE North | aen |
-| Europe | uk | United Kingdom | United Kingdom | uk |
-| Europe | uksouth | UK South | (Europe) UK South | uks |
-| Europe | ukwest | UK West | (Europe) UK West | ukw |
-| Americas | unitedstates | United States | United States | us |
-| Americas | westcentralus | West Central US | (US) West Central US | uswc |
-| Europe | westeurope | West Europe | (Europe) West Europe | euw |
-| Asia Pacific | westindia | West India | (Asia Pacific) West India | inw |
-| Americas | westus | West US | (US) West US | usw |
-| Americas | westus2 | West US 2 | (US) West US 2 | usw2 |
-| Americas | westus3 | West US 3 | (US) West US 3 | usw3 |
-| Americas | westus2stage | West US 2 (Stage) | (US) West US 2 (Stage) | usw2stg |
-| Americas | westusstage | West US (Stage) | (US) West US (Stage) | uswstg |
+| Region Name             | CLI Name              | Short Name | Slug            | Paired Region       | Data Residency           |
+|-------------------------|-----------------------|------------|-----------------|---------------------|--------------------------|
+| East Asia               | eastasia              | asea       | asia-east       | asia-south-east     | Hong Kong                |
+| Southeast Asia          | southeastasia         | asse       | asia-south-east | asia-east           | Singapore                |
+| Australia Central 2     | australiacentral2     | auc2       | aus-central-2   | aus-central         | Australia                |
+| Australia Central       | australiacentral      | auc        | aus-central     | aus-central-2       | Australia                |
+| Australia East          | australiaeast         | aue        | aus-east        | aus-south-east      | Australia                |
+| Australia Southeast     | australiasoutheast    | ause       | aus-south-east  | aus-east            | Australia                |
+| Brazil South            | brazilsouth           | brs        | bra-south       | us-south-central    | Brazil                   |
+| Brazil Southeast        | brazilsoutheast       | brse       | bra-south-east  | bra-south           | Brazil                   |
+| Canada Central          | canadacentral         | cac        | can-central     | can-east            | Canada                   |
+| Canada East             | canadaeast            | cae        | can-east        | can-central         | Canada                   |
+| China East 2            | chinaeast2            | cne2       | cn-east-2       | cn-north-2          | China                    |
+| China East 3            | chinaeast3            | cne3       | cn-east-3       | cn-north-3          | China                    |
+| China East              | chinaeast             | cne        | cn-east         | cn-north            | China                    |
+| China North 2           | chinanorth2           | cnn2       | cn-north-2      | cn-east-2           | China                    |
+| China North 3           | chinanorth3           | cnn3       | cn-north-3      | cn-east-3           | China                    |
+| China North             | chinanorth            | cnn        | cn-north        | cn-east             | China                    |
+| North Europe            | northeurope           | eun        | eu-north        | eu-west             | Ireland                  |
+| West Europe             | westeurope            | euw        | eu-west         | eu-north            | Netherlands              |
+| France Central          | francecentral         | frc        | fr-central      | fr-south            | France                   |
+| France South            | francesouth           | frs        | fr-south        | fr-central          | France                   |
+| Germany Central         | germanycentral        | gce        | ger-central     | ger-north           | Germany                  |
+| Germany Northeast       | germanynortheast      | gne        | ger-north-east  | ger-north           | Germany                  |
+| Germany North           | germanynorth          | gno        | ger-north       | ger-west-central    | Germany                  |
+| Germany West Central    | germanywestcentral    | gwc        | ger-west-central| ger-north           | Germany                  |
+| Central India           | centralindia          | inc        | ind-central     | ind-south           | India                    |
+| South India             | southindia            | ins        | ind-south       | ind-central         | India                    |
+| West India              | westindia             | inw        | ind-west        | ind-south           | India                    |
+| Israel Central          | israelcentral         | ilc        | isr-central     | N/A                 | Israel                   |
+| Italy North             | italynorth            | itn        | ita-north       | N/A                 | Italy                    |
+| Japan East              | japaneast             | jpe        | jap-east        | jap-west            | Japan                    |
+| Japan West              | japanwest             | jpw        | jap-west        | jap-east            | Japan                    |
+| Korea Central           | koreacentral          | krc        | kor-central     | kor-south           | Korea                    |
+| Korea South             | koreasouth            | krs        | kor-south       | kor-central         | Korea                    |
+| Norway East             | norwayeast            | noe        | norw-east       | norw-west           | Norway                   |
+| Norway West             | norwaywest            | now        | norw-west       | norw-east           | Norway                   |
+| Poland Central          | polandcentral         | polc       | pol-central     | N/A                 | Poland                   |
+| Qatar Central           | qatarcentral          | qatc       | qat-central     | N/A                 | Qatar                    |
+| South Africa North      | southafricanorth      | san        | saf-north       | saf-west            | South Africa             |
+| South Africa West       | southafricawest       | saw        | saf-west        | saf-north           | South Africa             |
+| Sweden Central          | swedencentral         | swec       | swe-central     | swe-south           | Sweden                   |
+| Sweden South            | swedensouth           | swes       | swe-south       | swe-central         | Sweden                   |
+| Switzerland North       | switzerlandnorth      | swn        | swz-north       | swz-west            | Switzerland              |
+| Switzerland West        | switzerlandwest       | sww        | swz-west        | swz-north           | Switzerland              |
+| UAE Central             | uaecentral            | uaec       | uae-central     | uae-north           | United Arab Emirates     |
+| UAE North               | uaenorth              | uaen       | uae-north       | uae-central         | United Arab Emirates     |
+| UK South                | uksouth               | uks        | uk-south        | uk-west             | United Kingdom           |
+| UK West                 | ukwest                | ukw        | uk-west         | uk-south            | United Kingdom           |
+| Central US              | centralus             | usc        | us-central      | us-east-2           | United States            |
+| East US 2               | eastus2               | use2       | us-east-2       | us-central          | United States            |
+| East US                 | eastus                | use        | us-east         | us-west             | United States            |
+| North Central US        | northcentralus        | usnc       | us-north-central| us-south-central    | United States            |
+| South Central US        | southcentralus        | ussc       | us-north-central| United States       |
+| West US 2               | westus2               | usw2       | us-west-2       | us-west-central     | United States            |
+| West US 3               | westus3               | usw3       | us-west-3       | us-east             | United States            |
+| West Central US         | westcentralus         | uswc       | us-west-central | us-west-2           | United States            |
+| West US                 | westus                | usw        | us-west         | us-east             | United States            |
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
