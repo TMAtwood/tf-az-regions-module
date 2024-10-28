@@ -1,0 +1,11 @@
+{
+  "tasks": [
+    {
+      "command": "act",
+      "label": "Run GitHub Actions Workflow",
+      "problemMatcher": [],
+      "type": "shell"
+    }
+  ],
+  "version": "2.0.0"
+}
